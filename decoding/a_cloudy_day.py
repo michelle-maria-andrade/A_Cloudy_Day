@@ -18,14 +18,15 @@ def read_lzma_point_cloud(filename):
     points = []
     v, t = None, None
 
-    for line in lines[:-3]:  # First lines are points
+    for line in lines[:-3]:  
         if line.strip():
             x, y, z = map(float, line.split())
-            points.append([x, y, z])  # Convert to list for Open3D
-
+            points.append([x, y, z])  
+            
     last_lines = [line.strip() for line in lines[-3:] if line.strip()]
     if len(last_lines) >= 2:
         v = float(last_lines[-2])  # Velocity
         t = float(last_lines[-1])  # Time
 
     return points, v, t
+
